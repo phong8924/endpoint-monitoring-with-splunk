@@ -1,0 +1,14 @@
+index="main" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+(Image="*powershell.exe*" OR CommandLine="*powershell*")
+| eval cmd=lower(CommandLine)
+| where like(cmd, "%encodedcommand%")
+   OR like(cmd, "% -enc %")
+   OR like(cmd, "%executionpolicy bypass%")
+   OR like(cmd, "%invoke-webrequest%")
+   OR like(cmd, "%iwr%")
+   OR like(cmd, "%downloadstring%")
+   OR like(cmd, "%outfile%")
+   OR like(cmd, "%http://%")
+   OR like(cmd, "%https://%")
+| table _time host User ParentImage Image CommandLine ProcessId ParentProcessId
+| sort - _time
