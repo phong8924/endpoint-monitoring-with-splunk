@@ -1,0 +1,13 @@
+*.log
+*.evtx
+*.pcap
+*.pcapng
+*.zip
+*.7z
+*.rar
+*.exe
+*.dll
+*.msi
+.env
+secrets.txt
+credentials.txt
