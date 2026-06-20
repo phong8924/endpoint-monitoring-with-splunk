@@ -1,0 +1,4 @@
+index="main" source="XmlWinEventLog:Security" EventCode=4625
+| stats count as failed_attempts by TargetUserName host
+| where failed_attempts >= 3
+| sort - failed_attempts
