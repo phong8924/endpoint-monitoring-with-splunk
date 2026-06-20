@@ -1,0 +1,4 @@
+index="main" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
+| search "update.ps1"
+| table _time host EventCode User Image TargetFilename CommandLine _raw
+| sort - _time
